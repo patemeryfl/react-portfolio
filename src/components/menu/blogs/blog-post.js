@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { withStyles } from 'material-ui/styles';
-import PropTypes from 'prop-types';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Collapse from 'material-ui/transitions/Collapse';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-//import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 
 import BlogComment from './blog-comments'
-
-import { createBlog, subscribeToBlogs } from '../../../actions';
-import { connect } from 'react-redux'
 
 const styles = theme => ({
     card: {
@@ -40,43 +37,33 @@ const styles = theme => ({
 })
 
 class BlogPost extends Component {
-    
+
   componentWillMount() {
-    this.props.subscribeToBlogs();
-  }
-    
-  handleCreateBlog() {
-    const { createBlog } = this.props;
-    const { value } = this.blog;
-    if (!value) {
-      return false;
-    }
-  
-    createBlog(value);
-    this.blog.value = '';
+    this.setState({
+      showComments: false,
+      addComment: false
+    })
   }
 
-  showComments() {
+  showComments = () => {
     this.setState({showComments: !this.state.showComments})
   }
 
-  showAddComment() {
+  showAddComment = () => {
     this.setState({addComment: !this.state.addComment})
   }
-    
+  
   render() {
-    const { blogs, classes } = this.props;
+    const { blog, classes } = this.props;
     return (
       <div>
-        {blogs.map((post, i) => (
-          <Card key={i}>
+          <Card>
             <CardContent>
                 <Typography type="headline" component="h2">
-                    {post.title}       
-                    <button onClick={() => this.removeBlog(post.id)}>X</button>                    
+                    {blog.title}                          
                 </Typography>
                 <Typography component="p">
-                    {post.content}
+                    {blog.content}
                 </Typography>
             </CardContent>
             <CardActions>
@@ -94,73 +81,17 @@ class BlogPost extends Component {
                     onClick={this.showComments}
                     //aria-expanded={this.state.showComments}
                     aria-label="Show more">
+                    <ExpandMoreIcon />
                 </IconButton>
             </CardActions>
-            <BlogComment comments={post.comments}/>
-          </Card>
-        ))}
+            <Collapse in={this.state.showComments} transitionDuration="auto" unmountOnExit>
+              <BlogComment comments={blog.comments}/>
+            </Collapse>
+          </Card><br/>
       </div>
     );
   }
 }
-    
-function mapDispatchToProps(dispatch) {
-  return {
-    createBlog: (post) => dispatch(createBlog(post)),
-    subscribeToBlogs: () => dispatch(subscribeToBlogs()),
-  };
-}
-    
-function mapStateToProps(state) {
-  return {
-    blogs: state.blogs
-  }
-}
-
-BlogPost.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
   
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(BlogPost));
-
-
-
-
-
-
-
-// const BlogPost = (props) => {
-//     const { classes, blog } = props
-//     return(
-        // <Card>
-        //     <CardContent>
-        //         <Typography type="headline" component="h2">
-        //             {blog.title}       
-        //             <button onClick={() => this.removeBlog(blog.id)}>X</button>                    
-        //         </Typography>
-        //         <Typography component="p">
-        //             {blog.content}
-        //         </Typography>
-        //     </CardContent>
-        //     <CardActions>
-        //         <Button dense color="primary">
-        //             Share
-        //         </Button>
-        //         <Button dense color="primary" onClick={props.showAddComment}>
-        //             Comment
-        //         </Button>
-        //         <div className={classes.flexGrow} />
-        //         <IconButton
-        //             // className={classnames(classes.expand, {
-        //             // [classes.expandOpen]: this.state.showComments,
-        //             // })}
-        //             onClick={props.showComments}
-        //             //aria-expanded={this.state.showComments}
-        //             aria-label="Show more">
-        //             <ExpandMoreIcon />
-        //         </IconButton>
-        //     </CardActions>
-        // </Card>
-//     )
-// }
+export default withStyles(styles)(BlogPost);
 

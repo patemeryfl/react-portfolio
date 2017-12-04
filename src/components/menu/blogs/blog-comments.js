@@ -11,18 +11,21 @@ const styles = theme => ({
   });
 
 const BlogComment = (props) => {
-  const { classes } = props
+  const { comments, classes } = props
   if(props.comments === "None") {
     return(<div>Sorry, there are no comments</div>)
   } else {
     return(
-      <CardHeader
-      avatar={
-        <Avatar aria-label="User" className={classes.avatar}>
-          {props.comments.username}
-        </Avatar>
-      }
-    />      
+      <div>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="User" className={classes.avatar}>
+              {comments.username}
+            </Avatar>
+          }
+        />      
+      {comments.comment}
+    </div>
     )
   }
 }
