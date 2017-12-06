@@ -17,6 +17,7 @@ class BlogComponent extends React.Component {
 
   componentWillMount() {
     this.props.subscribeToBlogs();
+    console.log(this.state)
   }
     
   handleCreateBlog() {
@@ -35,17 +36,22 @@ class BlogComponent extends React.Component {
     if(isAuthenticated) {
       return(<NewBlog submitNewBlog={this.submitNewBlog} handleChange={this.handleChange}/>)
     }
-    return (
-      <div>
-      <h2>Blogs</h2>
-        {blogs.map((post, i) => {
-            return(
-            <div key={i}>
-              <BlogPost blog={post}/>
-            </div>
-          )})}
-      </div>
-    );
+    console.log('Blogs', this.props)
+    if(blogs) {
+      return (
+        <div>
+        <h2>Blogs</h2>
+          {blogs.map((post, i) => {
+              return(
+              <div key={i}>
+                <BlogPost blog={post}/>
+              </div>
+            )})}
+        </div>
+      );
+    } else {
+      return(<div>Loading...</div>)
+    }
   }
 }
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { MuiThemeProvider } from 'material-ui/styles';
 import { darkTheme, lightTheme, blueTheme } from './assets/material-themes'
 
-import App from './components/App'
+import Main from './components/Main'
 import Home from './components/menu/Home'
 import Projects from './components/menu/Projects'
 import Blog from './components/menu/Blog'
@@ -16,7 +16,7 @@ import './index.css'
 
 
 const routes = (
-    <Route path="/" component={App}>
+    <Route path="/" component={Main}>
       <IndexRoute component={Home} />
       <Route path="projects" component={Projects} />
       <Route path="blog" component={Blog} />
@@ -26,26 +26,26 @@ const routes = (
     </Route>
   )
 
-class Root extends React.Component {     
+class Container extends React.Component {     
     render() {
     let theme = darkTheme
-    let selectedTheme = this.props.style[0]
+    let selectedTheme = this.props.theme.style[0]
     if(selectedTheme === 'dark') { theme = darkTheme }
     if(selectedTheme === 'light') { theme = lightTheme }
     if(selectedTheme === 'blue') { theme = blueTheme }
 
     return(
       <MuiThemeProvider theme={theme}>
-      <Router history={hashHistory}>
-        { routes }
-      </Router>
-    </MuiThemeProvider>
+        <Router history={hashHistory}>
+          { routes }
+        </Router>
+      </MuiThemeProvider>
     )
   }
 }
 
-function mapStateToProps({style}) {
-  return {style}
+function mapStateToProps({theme}) {
+  return {theme}
 }
 
-export default connect(mapStateToProps)(Root)
+export default connect(mapStateToProps)(Container)

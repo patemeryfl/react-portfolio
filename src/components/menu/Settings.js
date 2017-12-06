@@ -12,7 +12,7 @@ import Typography from 'material-ui/Typography';
 class Settings extends React.Component{
   constructor(props) {
     super(props)
-    this.state = { theme: 'light' }
+    this.state = { theme: 'dark' }
   }
 
   handleChange = theme => event => {
@@ -49,8 +49,14 @@ class Settings extends React.Component{
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    theme: state.theme
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({changeTheme}, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Settings)
+export default connect(mapStateToProps, mapDispatchToProps)(Settings)

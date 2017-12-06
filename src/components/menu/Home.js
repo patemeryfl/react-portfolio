@@ -14,14 +14,12 @@ const styles = {
     borderRadius: '15px'
   },
   title: {
-    textAlign: 'center',
-    marginTop: '-20px'
+    textAlign: 'center'
   }
 }
 
 export default () => (
   <div>
-    <h1 style={styles.title}>Welcome.</h1>
     <div style={styles.body} className='home-grid'>
       <div>
         <Tooltip
