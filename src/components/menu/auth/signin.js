@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
+import Button from 'material-ui/Button';
 import * as Actions from '../../../actions';
 
 const styles = theme => ({
@@ -54,8 +55,13 @@ class SignInComponent extends React.Component {
           <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
             <Field name="email" component={this.renderField} className="form-control" type="text" label="Email"/>
             <Field name="password" component={this.renderField} className="form-control" type="password" label="Password"/>
-
-            <button action="submit" className="btn btn-primary">Sign In</button>
+            <br/>
+            <Button onClick={this.props.cancel} color="primary">
+                Cancel
+            </Button>
+            <Button type="submit" color="primary">
+                Sign In
+            </Button>
           </form>
         </div>
     );

@@ -24,28 +24,28 @@ const styles = theme => ({
 function ProjectComponent(props) {
   const { classes } = props;
   let ProjectCards = [
-    { title: 'Angular Projects', 
-      content: 'Angular',
+    { title: 'Angular', 
+      content: 'Portfolio, Calendar, eCommerce',
       documentation: '',
       github: 'https://github.com/patemeryfl?utf8=%E2%9C%93&tab=repositories&q=angular&type=&language=' },
-    { title: 'React Projects', 
-      content: 'React Stuff',
+    { title: 'React', 
+      content: 'Weather Tracker, Cryptocurrency App, Portfolio',
       documentation: '',
       github: 'https://github.com/patemeryfl?utf8=%E2%9C%93&tab=repositories&q=react&type=&language=' },
-    { title: 'Python Projects', 
-      content: 'CS521',
+    { title: 'Python', 
+      content: 'Django/Flask, CSV Reader, DB Manager',
       documentation: '',
       github: 'https://github.com/patemeryfl?utf8=%E2%9C%93&tab=repositories&q=python&type=&language=' },
     { title: 'Story Friends', 
-      content: 'Project for school',
+      content: 'Interactive storybook manager for a Speech Language Pathology research grant at the University of South Florida.',
       documentation: 'https://github.com/patemeryfl/StoryFriendsWebApp/blob/master/README.md',
       github: 'https://github.com/patemeryfl/StoryFriendsWebApp' },
-    { title: 'BCI Record Database', 
-      content: 'BCI Database Content',
+    { title: 'BCI Database', 
+      content: 'Brain-Control Interface publication viewer/manager for SUNY - Albany',
       documentation: 'https://github.com/patemeryfl/BCIRecords/blob/master/README.md',
       github: 'https://github.com/patemeryfl/BCIRecords' },
     { title: 'VR Realty', 
-      content: 'Realty App' ,
+      content: 'Realty application with built in VR house tour' ,
       documentation: 'https://github.com/patemeryfl/BlueOmenVR/blob/master/README.md',
       github: 'https://github.com/patemeryfl/BlueOmenVR' }
   ]
@@ -72,8 +72,15 @@ function ProjectComponent(props) {
   })
 
   return (
-    <div className='project-grid'>
-      {renderCards}
+    <div>
+      <br/>
+      <Typography type="display1" component="h1">
+        Projects
+      </Typography>
+      <br/>
+      <div className='project-grid'>
+        {renderCards}
+      </div>
     </div>
   );
 }

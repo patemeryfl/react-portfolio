@@ -11,6 +11,6 @@ export function configureStore(initialState) {
     );
 
     store.dispatch(Actions.verifyAuth());
-
+    
     return store;
 }

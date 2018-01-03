@@ -7,7 +7,6 @@ const auth = firebase.auth()
 
 
 export function signUp(credentials) {
-    console.log(credentials)
     return function(dispatch) {
         auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => dispatch(authUser()))

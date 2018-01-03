@@ -1,15 +1,10 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-
 import NewBlog from './blogs/new-blog'
 import BlogPost from './blogs/blog-post'
+import Typography from 'material-ui/Typography';
 
 import { createBlog, subscribeToBlogs } from '../../actions';
 import { connect } from 'react-redux'
-
-const styles = theme => ({
-  card: {}
-})
 
 const isAuthenticated = false;
 
@@ -17,7 +12,6 @@ class BlogComponent extends React.Component {
 
   componentWillMount() {
     this.props.subscribeToBlogs();
-    console.log(this.state)
   }
     
   handleCreateBlog() {
@@ -32,26 +26,26 @@ class BlogComponent extends React.Component {
   }
 
   render() {
-    const { blogs } = this.props
+    const { blogs } = this.props;
+    let blogPosts = Object.values(blogs)
     if(isAuthenticated) {
       return(<NewBlog submitNewBlog={this.submitNewBlog} handleChange={this.handleChange}/>)
     }
-    console.log('Blogs', this.props)
-    if(blogs) {
-      return (
-        <div>
-        <h2>Blogs</h2>
-          {blogs.map((post, i) => {
-              return(
-              <div key={i}>
-                <BlogPost blog={post}/>
-              </div>
-            )})}
-        </div>
-      );
-    } else {
+    if(blogPosts[0].length <= 0) {
       return(<div>Loading...</div>)
     }
+    return (
+      <div>
+        <br/>
+        <Typography type="display1" component="h1">
+          Blogs
+        </Typography><br/>
+        {blogPosts[0].map((post, i) => {
+            return(<div key={i}><BlogPost blog={post}/></div>)
+          })}
+      </div>
+    );
+      
   }
 }
 
@@ -62,11 +56,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
     
-function mapStateToProps(state) {
-  return {
-    blogs: state.blogs
-  }
+function mapStateToProps({blogs}) {
+  return {blogs}
 }
   
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(BlogComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(BlogComponent);
 

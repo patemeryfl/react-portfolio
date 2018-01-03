@@ -1,7 +1,15 @@
 import React from 'react'
+import Card, { CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 
 export default () => (
   <div>
-    <h1>Resume Page</h1>
+  <Typography type="display1" component="h1">
+    Resume
+  </Typography>
+  <br/>
+  <Card>
+    <CardContent></CardContent>
+  </Card>
   </div>
 )

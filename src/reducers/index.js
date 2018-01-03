@@ -7,7 +7,7 @@ import { reducer as FormReducer } from 'redux-form';
 const rootReducer = combineReducers({
     auth: AuthReducer,
     form: FormReducer,
-    blog: BlogReducer,
+    blogs: BlogReducer,
     theme: ThemeReducer
 });
 

@@ -9,7 +9,7 @@ export default function BlogReducer(state = initialState, action) {
         case FETCH_BLOGS:
             return Object.assign({}, state, {
                 blogs: state.blogs.concat([action.payload])
-            });      
+            });  
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import { CHANGE_THEME} from '../actions/action_types';
 
 const initialState =  {
-    style: 'dark'
+    style: 'blue'
 };
 
 export default function ThemeReducer(state = initialState, action) {

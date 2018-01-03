@@ -2,22 +2,23 @@ import { createMuiTheme } from 'material-ui/styles';
 
 // import { grey,lightBlue, blueGrey, indigo, green } from 'material-ui/colors';
 
-import { blueGrey, lightBlue, indigo, red } from 'material-ui/colors';
+import { white, blueGrey, yellow, grey, lightBlue, blue, red } from 'material-ui/colors';
 
-const darkTheme = createMuiTheme({
-    palette: {
-        type: 'dark',
-        primary: blueGrey,
-        secondary: {
-            ...blueGrey,
-            900: '#263238'
-        },
-        error: red
-      },
-});
+
 
 const lightTheme = createMuiTheme({
     palette: {
+        type: 'light',
+        primary: lightBlue,
+        secondary: blue,
+        error: red,
+        contrast: white,
+    },
+});
+
+const blueTheme = createMuiTheme({
+    palette: {
+        type: 'dark',
         primary: lightBlue,
         secondary: blueGrey,
     },
@@ -26,15 +27,22 @@ const lightTheme = createMuiTheme({
     },
 });
 
-const blueTheme = createMuiTheme({
+const yellowTheme = createMuiTheme({
     palette: {
-        primary: blueGrey,
-        secondary: indigo,
+        type: 'dark',
+        primary: {
+            ...yellow,
+            A400: '#FFEA00',
+        },
+        secondary: {
+            ...grey,
+            900: '#212121'
+        },
     },
     status: {
         danger: red,
     },
 });
 
-export { darkTheme, lightTheme, blueTheme }
+export { lightTheme, blueTheme ,yellowTheme }
 

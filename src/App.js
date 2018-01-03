@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import { connect } from 'react-redux'
 
 import { MuiThemeProvider } from 'material-ui/styles';
-import { darkTheme, lightTheme, blueTheme } from './assets/material-themes'
+import { lightTheme, blueTheme, yellowTheme } from './assets/material-themes'
 
 import Main from './components/Main'
 import Home from './components/menu/Home'
@@ -13,7 +13,6 @@ import Contact from './components/menu/Contact'
 import Settings from './components/menu/Settings'
 import More from './components/sub-menu/More'
 import './index.css'
-
 
 const routes = (
     <Route path="/" component={Main}>
@@ -28,11 +27,11 @@ const routes = (
 
 class Container extends React.Component {     
     render() {
-    let theme = darkTheme
+    let theme = blueTheme
     let selectedTheme = this.props.theme.style[0]
-    if(selectedTheme === 'dark') { theme = darkTheme }
     if(selectedTheme === 'light') { theme = lightTheme }
     if(selectedTheme === 'blue') { theme = blueTheme }
+    if(selectedTheme === 'yellow') { theme = yellowTheme }
 
     return(
       <MuiThemeProvider theme={theme}>

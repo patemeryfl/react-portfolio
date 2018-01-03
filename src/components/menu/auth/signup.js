@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import { withStyles } from 'material-ui/styles';
 import { connect } from 'react-redux';
+import Button from 'material-ui/Button';
 import * as Actions from '../../../actions';
 
 const styles = theme => ({
@@ -58,9 +59,8 @@ class SignUpComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <div className="col-md-6 col-md-offset-3">
-                    <h2 className="text-center">Sign Up</h2>
 
                     { this.renderAuthenticationError() }
 
@@ -68,8 +68,13 @@ class SignUpComponent extends React.Component {
                         <Field name="email" type="text" component={this.renderField} label="Email" />
                         <Field name="password" type="password" component={this.renderField} label="Password" />
                         <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
-
-                        <button action="submit" className="btn btn-primary">Sign up</button>
+                        <br/>
+                        <Button onClick={this.props.cancel} color="primary">
+                            Cancel
+                        </Button>
+                        <Button type="submit" color="primary">
+                            Sign Up
+                        </Button>
                     </form>
                 </div>
             </div>

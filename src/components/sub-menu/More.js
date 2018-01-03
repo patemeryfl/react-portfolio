@@ -8,15 +8,17 @@ import Education from './Education'
 import About from './About'
 
 function TabContainer(props) {
-  return <div style={{ padding: 8 * 3 }}>{props.children}</div>;
+  return <div style={{ paddingLeft: 30 }}>{props.children}</div>;
 }
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    marginTop: theme.spacing.unit * 3,
-    backgroundColor: theme.palette.background.paper,
+    paddingLeft: '15vh',
+    paddingRight: '15vh',
+    marginTop: theme.spacing.unit * 3
   },
+  bar: {backgroundColor: '#313131'},
+  button: {color: theme.palette.text.primary}
 });
 
 class More extends React.Component {
@@ -30,9 +32,9 @@ class More extends React.Component {
     const { classes } = this.props;
     const { value } = this.state;
     return (
-      <div>
-        <AppBar position="static">
-          <Tabs value={value} onChange={this.changeTabs}>
+      <div className='moreContainer'>
+        <AppBar position="static" className={classes.bar}>
+          <Tabs className={classes.button} value={value} onChange={this.changeTabs}>
             <Tab label="Education" />
             <Tab label="Resume" />
             <Tab label="About" />

@@ -12,7 +12,7 @@ import Typography from 'material-ui/Typography';
 class Settings extends React.Component{
   constructor(props) {
     super(props)
-    this.state = { theme: 'dark' }
+    this.state = { theme: 'blue' }
   }
 
   handleChange = theme => event => {
@@ -23,23 +23,25 @@ class Settings extends React.Component{
   render() {
     return(
       <div>
+        <br/>
+        <Typography type="display1" component="h1">
+        Settings
+        </Typography>
+        <br/>
         <Card>
           <CardContent>
-            <Typography type="headline" component="h2">
-              Settings
-            </Typography>
-            <Typography type="subheading" component="h2">
+            <Typography type="title" component="p">
               Select Theme
             </Typography>
             <Select
               value={this.state.theme}
               onChange={this.handleChange('theme')}
               input={<Input/>}>
-              <MenuItem value={'dark'}>Dark</MenuItem>
+              <MenuItem value={'yellow'}>Yellow</MenuItem>
               <MenuItem value={'light'}>Light</MenuItem>
               <MenuItem value={'blue'}>Blue</MenuItem>
-            </Select>
-            <Typography type="subheading" component="h2">
+            </Select><br/>
+            <Typography type="title" component="p">
               Blog Settings
             </Typography>
           </CardContent>
